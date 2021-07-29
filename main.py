@@ -5,6 +5,7 @@ import datetime
 from pprint import pprint
 import json
 
+
 def get_rows(filename):
     month_name_year = ntpath.basename(filename).replace('.csv', '').replace('Uscite_', '')
     year_month = month_name_year.split('_')[1] + '-' + str(f"{datetime.datetime.strptime(month_name_year.split('_')[0], '%B').month:02}")
@@ -18,6 +19,7 @@ def get_rows(filename):
             line[1] = float(line[1].replace('-€', '').replace("\n", '').replace('"', '').replace(' ', '').replace('.', '').replace(',', '.'))
             rows.append(line)
         return year_month, rows
+
 
 if __name__ == "__main__":
     year_month_data = {}
