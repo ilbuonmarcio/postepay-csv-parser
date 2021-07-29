@@ -3,6 +3,7 @@ import string
 import ntpath
 import datetime
 from pprint import pprint
+import json
 
 def get_rows(filename):
     month_name_year = ntpath.basename(filename).replace('.csv', '').replace('Uscite_', '')
@@ -28,4 +29,6 @@ if __name__ == "__main__":
             'total': sum([row[1] for row in rows])
         }
     
-    pprint(year_month_data)
+    json_repr = json.dumps(year_month_data, sort_keys=True, indent=4)
+    with open('export.json', 'w') as output_file:
+        output_file.write(json_repr)
